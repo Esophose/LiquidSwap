@@ -41,7 +41,6 @@ public class LiquidSwap extends JavaPlugin {
         ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
 
         protocolManager.addPacketListener(new PacketAdapter(this, ListenerPriority.NORMAL,
-                Server.BLOCK_ACTION,
                 Server.BLOCK_BREAK,
                 Server.BLOCK_CHANGE,
                 Server.MULTI_BLOCK_CHANGE,
