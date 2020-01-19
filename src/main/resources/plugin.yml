@@ -1,0 +1,7 @@
+name: LiquidSwap
+main: dev.esophose.liquidswap.LiquidSwap
+version: @version@
+api-version: 1.13
+description: Turn lava into water and vice-versa
+author: Esophose
+depend: [ProtocolLib]

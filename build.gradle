@@ -1,0 +1,41 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'java'
+}
+
+group 'dev.esophose'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+
+    maven { url 'https://repo.dmulloy2.net/nexus/repository/public/' }
+
+    flatDir { dirs 'libs' }
+}
+
+dependencies {
+    shadow 'com.comphenix.protocol:ProtocolLib:4.5.0'
+    shadow 'org.spigotmc:spigot:1.15.1-R0.1-SNAPSHOT'
+    compile files('libs/mcprotocollib-1.15.1-1-SNAPSHOT.jar', 'libs/packetlib-1.5-SNAPSHOT.jar')
+}
+
+shadowJar {
+    archiveClassifier.set(null)
+
+    minimize()
+}
+
+processResources {
+    from (sourceSets.main.resources.srcDirs) {
+        include '**/*.yml'
+        filter ReplaceTokens, tokens: ["version": project.property("version")]
+    }
+}
+
+build.dependsOn shadowJar
